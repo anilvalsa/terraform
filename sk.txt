@@ -1,1 +1,219 @@
-nello valu]
+terraform init
+terraform validate         // validaing of syntx writings in files
+terraform plan            // to see the preview of infracture modifications.
+terraform apply           // change made will reflected. ( adding , modifications ) 
+terraform destroy
+terraform  refresh 
+terrraform  refresh=false    
+terraform show             //to show the .ftstate in the terminal
+terraform console
+terraform plugins         //
+terraform providers       //will list out the req providers in your pwd
+terraform out --json
+terraform output <LocalName of outputblock>
+terrafom fmt
+
+terraform plan -out ex.tfplan
+terraform apply "ex.tfplan"
+
+terraform apply -- auto-approve
+terraform apply --target= resourcetype.localName
+terrafrom apply --hep
+terraform desstroy --help
+terraform destroy --target= resourcetype.localName
+
+terraform plan --help | less
+
+
+
+.tf   //files with .tf extention
+terraform.tfstate
+terraform.tfstate.backup
+                                     desired state  | known state | actual state
+
+
+provider "aws" {
+	region = "us-east-1"
+	version = "~>2.46"
+}
+
+#plan -excute 
+resource "aws_s3_bucket" "my_s3_bucket" {
+	bucket = "my-s3-bucket-123"
+	versioning {
+		enabled = ture
+	}
+}
+
+resource "aws_iam_user" "my_iam_user" {
+	name = "my_iam_user_abcd"
+}
+
+resource "aws_iam_user" "my_iam_users" {
+	count = 2
+	name = "my_iam_user_abcd_${count.index}"   // 0 , 1
+}
+
+//showing output
+ output "my_s3_bucket_versioning"{
+		value = aws_s3_bucket.my-s3-bucket-123.versioning[0].enabled
+ }
+ 
+ output "my_s3_bucket_compete_deatails"{
+		value = aws_s3_bucket.my-s3-bucket-123
+ }
+ 
+  output "aws_iam_user_compete_deatails"{
+		value = aws_iam_user.my_iam_user_abcd
+ }
+
+
+
+
+
+
+resource block - 2 labels
+var bolck - 1 labels
+terrafom file. 
+   permistic contrack operator
+
+provisioners  : 
+		If you want to define the addtional features which is not in the terrrform .use pre block in rb
+
+
+
+input are specified in arg /                      
+		req - location,name
+		opt - lables to identity
+		meta-argu   - to change the default  behavior of tera ; ex- creating more vms
+attirbute are outptut the genereated by running scipts
+
+terraform block : used to define your req version of cli,req providers, bakcend block
+datasource bolck : used to  get the information
+module block :  
+		more resources can combined to make single package called modules.
+terraform setting block:
+
+
+---------------------------------------------------------------------------------------------------------------------------------------  
+---------------------------------------------------------------------------------------------------------------------------------------  
+//BLOCK - 1
+outptut first_script{
+	value = "HELLO WORLD"
+}
+variable userName {
+	default = "superMan"
+	type  = String                      //list    >terrafom apply -var "users=["anil","sathish","rakesh" ]"
+										//dict values.
+}
+variable userAge {
+
+}
+ouput print_detils{
+    value = " you name ${var.userName} and your age is ${var.userAge}"
+	               /*  ${toString(var.userName)}
+				       ${var.users[0]}
+					   ${upeer(var.users[2]}
+					   ${title(var.users[3])}
+					   ${join(seperator , users)}
+					   
+}
+
+-----------------------------------------------------------------------
+> terraform plan 
+> terraform apply -var "userName= anil"
+>  terraform apply -var "userName= anil"
+
+
+-----------------------------------------------------------------------
+
+export TF_VAR_userName = anil
+export TF_VAR_userAge = 22
+> echo $userAge
+> terrraform plan
+
+-----------------------------------------------------------------------
+   .tfvars
+     userName = anil 
+	 userAge = 22
+> terraform plan -var-file=   .tfvars	 
+	 
+	 
+	 
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
